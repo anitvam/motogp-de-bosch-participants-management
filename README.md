@@ -1,6 +1,6 @@
 # MotoGP de Bosch – Gestionale iscrizioni e batterie
 
-Programma locale (funziona senza internet) per:
+Programma per:
 
 - registrare gli iscritti e le loro moto (senza limite di numero), con **pagato** e **assicurato**;
 - comporre in automatico le **batterie di partenza** per classe (max 8 moto, sorteggio casuale);
@@ -77,31 +77,3 @@ letto e stampato:
 - **Moto per numero**: elenco delle moto in ordine di numero di gara, per trovare subito di chi è una moto.
 
 Si stampa in orizzontale su A4, con l'intestazione ripetuta su ogni pagina.
-
-## Dati e backup
-
-Tutto è salvato nel file `data/motogp.sqlite`. Da **Impostazioni → Scarica backup** se ne scarica una copia.
-Per una nuova edizione: scarica il backup, poi usa **Svuota tutto**.
-
-## For developers
-
-Code, comments and scripts are in English; the UI and this user guide are in Italian for the volunteers.
-
-```bash
-python3 -m venv .venv && .venv/bin/pip install -e '.[dev]'
-.venv/bin/pytest                                                            # run the test suite
-MOTOGP_DB=/tmp/test.sqlite .venv/bin/streamlit run src/motogp_bosch/app.py  # run against a scratch database
-```
-
-| Module | Responsibility |
-|---|---|
-| `models.py` | `Rider`, `Bike`, `GridRow` dataclasses |
-| `db.py` | SQLite schema and migrations, CRUD, race-number uniqueness, draw / draft / grid maintenance |
-| `classes.py` | cc bands and bike types → race class |
-| `grids.py` | pure, seedable draw algorithm (even split, max per grid, one bike per rider per turn) |
-| `validate.py` | consistency checks shown on the *Controlli* page |
-| `parsing.py` | splits free-text bike descriptions into brand, model, cc and year |
-| `export_xlsx.py` | starting grids (official and draft) in the 2025 template layout |
-| `export_pdf.py` | PDF conversion through LibreOffice headless |
-| `export_data.py` | human-readable full data export |
-| `app.py` | Streamlit UI |
