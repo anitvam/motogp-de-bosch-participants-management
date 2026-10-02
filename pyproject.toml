@@ -1,0 +1,24 @@
+[project]
+name = "motogp-bosch"
+version = "0.1.0"
+description = "Registration and starting-grid manager for the MotoGP de Bosch vintage motorcycle race"
+requires-python = ">=3.10"
+dependencies = [
+    "openpyxl>=3.1",
+    "pillow>=10",
+    "streamlit>=1.40",
+    "pandas>=2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
